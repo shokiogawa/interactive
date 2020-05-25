@@ -1,0 +1,22 @@
+<% if users.any? %>
+<div class="row">
+ <div class="col-sm-12">
+  <ul class="list-unstyled row">
+   <% users.each do |user| %>
+     <li class="media mb-4 col-sm-6">
+      <% if user.image_url %>
+           <%= image_tag user.image_url(:thumb) %>
+      <% else %>
+            <img class="rounded img-fluid" src="<%= gravatar_url(user, { size: 100 }) %>" alt="">
+      <% end %>
+     <div class="media-body ml-5">
+         <h5><%= link_to user.name , user_path(user) %></h5><p> 母国語:<%= user.lang1 %>, 第二言語:<%= user.lang2 %></p>
+         <%= user.profile %>
+     </div>
+     </li>
+   <% end %>
+ </ul>
+ </div>
+</div>
+<%= paginate users %>
+<% end %>

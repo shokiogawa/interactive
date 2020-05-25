@@ -1,0 +1,21 @@
+<h3>投稿記入</h3>
+<div clsaa="row">
+    <div class="col-sm-8 offset-sm-2">
+    
+        <%= form_with(model: @post, local:true) do |f| %>
+        <div class="form-group row">
+            <%= f.label :title, "タイトル", class: "col-form-label col-sm-2" %>
+            <%= f.text_field :title, class: "form-control col-sm-8" %>
+        </div>
+        
+        <div class="form-group row">
+            <%= f.label :content, "記入欄", class: "col-form-label col-sm-2" %>
+            <%= f.text_area :content, class: "form-control col-sm-8", rows:10 %>
+        </div>
+        
+        <div class="row">
+        <%= f.submit "投稿する", class: "btn btn-primary offset-sm-8" %>
+        </div>
+        <% end %>
+    </div>
+</div>

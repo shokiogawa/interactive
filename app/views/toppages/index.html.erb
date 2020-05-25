@@ -1,0 +1,14 @@
+<% if logged_in? %>
+<h1>ログイン完了</h1>
+<% else %>
+<div class="card bg-dark text-white">
+  <img src="/assets/9042a.jpg" class="card-img" alt="background">
+  <div class="card-img-overlay text-center mt-5">
+    <h1 class="card-title text-center">Let's dive into the international world</h1>
+    <p class="card-text text-center">Learn your second language by communicating with valiable people</p>
+    <%= link_to "インタラクティブに登録", login_path, class:"btn btn-primary" %>
+  </div>
+  
+</div>
+<% end %>
+  
