@@ -1,5 +1,29 @@
-               
-               
+        
+<div class="row">
+    <div class="col-sm-4">
+<% @comments.each do |c| %>    
+        <div class="row ml-5 mt-5">
+            <div clas="col-sm-3">
+               <% if c.user.image_url %>
+                  <%= image_tag c.user.image_url(:thumb) , class:"mb-3 mt-3" %>
+               <% else %>
+                  <img class="rounded img-fluid" src="<%= gravatar_url(c.user, { size: 100 }) %>" alt="">
+               <% end %>
+            </div>
+        <div class="media-body ml-5 mb-3 mt-3 class-sm-9">
+            <%= c.user.name%>
+            <%= c.created_at %>
+            <h5 class="mt-4"><%= c.content %></h5>
+        </div>
+    </div>
+<% end %>
+ </div>
+
+                     
+        
+        
+   
+<div class="col-sm-8"> 
     <div class="row ml-5 mt-5">
         <div clas="col-sm-3">
                <% if @post.user.image_url %>
@@ -19,23 +43,27 @@
                    <%= link_to "メッセージを削除", @post, method: :delete, data: { confirm: "本当に削除してよろしいですか? "}, class:"" %>
                   <% end %>
                   
-              　　　<%= form_with(model: @post.comments.build ,local:true) do |f| %>
-               　　　　<div class="form-group">
-                   　　　<%= f.label :content, "コメント追加" %>
-                   　　　<%= f.text_field :content %>
-                   　　　<%= hidden_field_tag :user_id, current_user.id %>
+                   
+                  
+                     <%= form_with(model: @post.comments.build, local:true) do |f| %>
+                        <div class="form-group">
+                         <%= f.label :content, "コメント追加" %>
+                         <%= f.text_field :content %>
+                         <%= hidden_field_tag :user_id, current_user.id %>
                         <%= hidden_field_tag :post_id , @post.id %>
-                   　　　<%= f.submit "追加", class: "" %>
-                　　　</div>
-              　　<% end %>
+                        <%= f.submit "追加", class: "" %>
+                       </div>
+                    <% end %>
         </div>
+    </div>
+</div>
         
-        <div class="col-sm-6 offset-sm-6">
-            <% @comments.each do |c| %>
-             <%= c.created_at %>
-             <h4><%= c.content %></h4>
-            <% end %>
-        </div>
+       
+        
+        
+        
+        
+        
         
         
         

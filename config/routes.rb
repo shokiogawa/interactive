@@ -4,12 +4,7 @@ Rails.application.routes.draw do
   get 'comments/destroy'
   get 'relationships/create'
   get 'relationships/destroy'
-  get 'posts/show'
-  get 'posts/new'
-  get 'posts/create'
-  get 'posts/edit'
-  get 'posts/update'
-  get 'posts/destroy'
+ 
   get 'sessions/new'
   get 'sessions/create'
   get 'sessions/destroy'

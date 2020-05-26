@@ -16,7 +16,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
       flash[:success] = "投稿されました"
-      redirect_to root_url
+      redirect_to user_path(@post.user)
     else
       flash.new[:danger] = "投稿に失敗しました"
       render :new
@@ -33,7 +33,7 @@ class PostsController < ApplicationController
     
     if @post.update(post_params)
       flash[:success] = "編集しました"
-      redirect_to controller: 'users', action: 'index'
+      redirect_to user_path(@post.user)
     else
       flash.new[:danger] = "編集に失敗しました"
       render :edit
@@ -44,7 +44,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     flash[:success] = "削除しました"
-    redirect_back(fallback_location: root_path)
+    redirect_to user_path(@post.user)
   end
   
   private
@@ -54,7 +54,7 @@ class PostsController < ApplicationController
   
   def correct_user
     @post = current_user.posts.find_by(id: params[:id])
-    unless @posts
+    unless @post
      redirect_to root_url
     end
   end

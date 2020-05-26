@@ -35,8 +35,9 @@
         </div>
     </aside>
     <div class="col-sm-7 offset-sm-1">
-        <div>
+        <div class="border-bottom">
             <h4>投稿一覧</h4>
+            <%= link_to "投稿する", new_post_path %>
         </div>
         <%= render "posts/posts" , posts: @post %>
        

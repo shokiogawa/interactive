@@ -7,7 +7,7 @@ class User < ApplicationRecord
                     
    mount_uploader :image, ImageUploader
    
-   has_many :posts
+   has_many :posts, dependent: :destroy
    
    has_many :relationships
    has_many :followings, through: :relationships, source: :follow
@@ -30,7 +30,7 @@ class User < ApplicationRecord
        self.followings.include?(other_user)
    end
    
-   has_many :comments
-   has_many :post1, through: :comments, source: :post
+   has_many :comments, dependent: :destroy
+   has_many :post1, through: :comments, source: :post, dependent: :destroy
     
 end
