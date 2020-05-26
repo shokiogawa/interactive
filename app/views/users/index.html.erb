@@ -5,4 +5,13 @@
 <%= render "users", users: @users %>
 
 <h2 class="mb-5 mt-5">投稿一覧</h2>
+<%= form_tag users_path, method: :get, class: 'boards__searchForm' do %>
+       <%= select_tag :category_id, 
+              options_from_collection_for_select(Category.all, :id, :name, params[:category_id]),
+              {
+                  prompt: "カテゴリーで絞込",
+                  onchange: "submit(this.form);"
+              }
+       %>
+<% end %>
 <%= render "posts/posts", posts: @posts %>

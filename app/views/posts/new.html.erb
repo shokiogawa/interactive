@@ -13,6 +13,15 @@
             <%= f.text_area :content, class: "form-control col-sm-8", rows:10 %>
         </div>
         
+       <div>
+           <%= f.label :category %>
+           <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category| %>
+            <%= category.label do %>
+             <%= category.check_box %>
+             <%= category.text %>
+            <% end %>
+           <% end %>
+        
         <div class="row">
         <%= f.submit "投稿する", class: "btn btn-primary offset-sm-8" %>
         </div>

@@ -5,7 +5,17 @@ class UsersController < ApplicationController
   
   def index
     @users = User.order(id: :desc).page(params[:page]).per(14)
-    @posts = Post.order(id: :desc).page(params[:page]).per(14)
+    # @posts = Post.order(id: :desc).page(params[:page]).per(14)
+    
+    #@posts = params[:category_id].present? ? Category.find(params[:category_id]).posts : Post.all
+    @category = Category.find_by(id: params[:category_id])
+    
+    if @category
+      @posts = @category.posts
+    else
+      @posts = Post.order(id: :desc).page(params[:page]).per(14)
+    end
+      
     
     
     

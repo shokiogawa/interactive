@@ -16,6 +16,11 @@
                   
                   <%= link_to post.user.name, post_path(post) ,class:"mr-3"%>
                   <%= post.created_at %>
+                  <p>カテゴリー:
+                  <% post.categorys.each do |category| %>
+                   <%= category.name %>
+                  <% end %>
+                  </p>
                   
                   <p><%= post.content %></p>
                   
@@ -29,6 +34,6 @@
           <% end %>
         </ul>
     </div>
-    <%= paginate posts %>
+    
 </div>
 <% end %>

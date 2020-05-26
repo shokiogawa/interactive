@@ -6,4 +6,7 @@ class Post < ApplicationRecord
   
   has_many :comments, dependent: :destroy
   has_many :user1, through: :comments, source: :user, dependent: :destroy
+  
+  has_many :post_category_relationships
+  has_many :categorys, through: :post_category_relationships
 end

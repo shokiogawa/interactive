@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_24_023414) do
+ActiveRecord::Schema.define(version: 2020_05_26_050229) do
+
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "content"
@@ -22,13 +28,13 @@ ActiveRecord::Schema.define(version: 2020_05_24_023414) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "hobies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "content"
-    t.bigint "user_id"
-    t.string "title"
+  create_table "post_category_relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "post_id"
+    t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_hobies_on_user_id"
+    t.index ["category_id"], name: "index_post_category_relationships_on_category_id"
+    t.index ["post_id"], name: "index_post_category_relationships_on_post_id"
   end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -64,7 +70,8 @@ ActiveRecord::Schema.define(version: 2020_05_24_023414) do
 
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
-  add_foreign_key "hobies", "users"
+  add_foreign_key "post_category_relationships", "categories"
+  add_foreign_key "post_category_relationships", "posts"
   add_foreign_key "posts", "users"
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "follow_id"
