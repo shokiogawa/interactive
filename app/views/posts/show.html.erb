@@ -1,25 +1,11 @@
-        
-<div class="row">
-    <div class="col-sm-4">
-<% @comments.each do |c| %>    
-    <div class="row ml-5">
-        <div class="media-body ml-5 mb-3 mt-3 class-sm-9 border-top border-bottom">
-            <%= link_to c.user.name, user_path(c.user) %>
-            <%= c.created_at %>
-            <p class="mt-4"><%= c.content %></p>
-            <% if current_user == c.user %>
-              <%= link_to "コメントを削除" , c, method: :delete %>
-            <% end %>
-        </div>
-    </div>
-<% end %>
- </div>
+
 
                      
         
         
-   
-<div class="col-sm-8"> 
+<div class="row"> 
+
+ <div class="col-sm-8 offset-sm-3"> 
     <div class="row ml-5 mt-5">
         <div clas="col-sm-3">
                <% if @post.user.image_url %>
@@ -41,20 +27,47 @@
                   
                    
                   
-                     <%= form_with(model: @post.comments.build, local:true) do |f| %>
-                        <div class="form-group">
-                         <%= f.label :content, "コメント追加" %>
-                         <%= f.text_field :content %>
-                         <%= hidden_field_tag :user_id, current_user.id %>
-                        <%= hidden_field_tag :post_id , @post.id %>
-                        <%= f.submit "追加", class: "" %>
-                       </div>
-                    <% end %>
+                     
         </div>
     </div>
 </div>
-        
+
+<div class="col-sm-6 offset-sm-4">
+<% @comments.each do |c| %>    
+    <div class="row ml-5">
+        <div class="media-body ml-5 mb-1 mt-1 class-sm-9 border-top border-bottom">
+            <%= link_to c.user.name, user_path(c.user) %>
+            <%= c.created_at %>
+            <p class="mt-4"><%= c.content %></p>
+            <% if current_user == c.user %>
+              <%= link_to "コメントを削除" , c, method: :delete %>
+            <% end %>
+            
+        </div>
+    </div>
+<% end %>
+ </div>
+ <div class="offset-sm-6">
+ 
+                     <%= form_with(model:  @post.comments.build, local:true) do |f| %>
+                        <div class="form-group">
+                         <%= f.label :content, "コメント追加" %>
+                         <%= f.text_field :content %>
+                         <%= hidden_field_tag :post_id , @post.id %>
+                         <%= hidden_field_tag :user_id, current_user.id %>
+                         
+                        <%= f.submit "追加", class: "" %>
+                       </div>
+                    <% end %>
 </div>
+
+
+        
+        
+
+</div>
+
+
        
         
         
