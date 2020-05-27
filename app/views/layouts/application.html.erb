@@ -6,7 +6,7 @@
     <title>Interactive</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <link rel="stylesheet" href="index.css">
+    
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
     
@@ -22,10 +22,11 @@
   <body>
     <%= render "layouts/navbar" %>
     
-    <div class="container">
+  
       <%= render "layouts/flash_messages" %>
       
-    <%= yield %>
-    </div>
+    　<%= yield %>
+    　<%= render "layouts/footer" %>
+    
   </body>
 </html>

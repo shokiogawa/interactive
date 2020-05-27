@@ -45,6 +45,9 @@ class PostsController < ApplicationController
     @post.destroy
     flash[:success] = "削除しました"
     redirect_to user_path(@post.user)
+    
+    
+    
   end
   
   private

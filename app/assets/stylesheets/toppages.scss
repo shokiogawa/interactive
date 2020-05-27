@@ -1,3 +1,26 @@
 // Place all the styles related to the toppages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.jumbotron{
+    background-image:url(9042.jpg);
+    background-size:cover;
+    height:500px;
+    
+}
+
+.container{
+    text-align:center;
+    margin-top:150px;
+    
+    
+}
+
+.h1{
+    font-family:sans-serif;
+
+}
+.btn{
+    display:inline-block;
+    padding: 10px 80px 10px 80px;
+}

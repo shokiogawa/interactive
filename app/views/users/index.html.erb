@@ -1,9 +1,17 @@
-<h2 class="mb-5">ユーザー一覧</h2>
+
+<div class="show1">
+       <div class="text-center">
+              <h1 class="pt-4">友達を見つけよう</h1>
+              <p>友達<span><%= @count_users %>件</p>
+       </div>
+</div>
 
 
 
 <%= render "users", users: @users %>
 
+<div class="row">
+<div class="offset-sm-2">
 <h2 class="mb-5 mt-5">投稿一覧</h2>
 <%= form_tag users_path, method: :get, class: 'boards__searchForm' do %>
        <%= select_tag :category_id, 
@@ -14,4 +22,12 @@
               }
        %>
 <% end %>
+</div>
+</div>
+<div class=row>
+    <div class="col-sm-10 offset-sm-2">
 <%= render "posts/posts", posts: @posts %>
+   </div>
+ </div>
+
+<% else %>

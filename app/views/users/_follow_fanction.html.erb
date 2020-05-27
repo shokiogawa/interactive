@@ -1,6 +1,5 @@
 <% if users.any? %>
-<div class="row">
- <div class="col-sm-12">
+
   <ul class="list-unstyled row">
    <% users.each do |user| %>
      <li class="media mb-4 col-sm-6">
@@ -16,7 +15,6 @@
      </li>
    <% end %>
  </ul>
- </div>
-</div>
 <%= paginate users %>
+
 <% end %>

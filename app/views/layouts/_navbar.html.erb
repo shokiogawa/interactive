@@ -1,6 +1,11 @@
-<header class="mb-2">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">Interactive</a>
+<header>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <% if logged_in? %>
+        <h3><%= link_to "Talk Time", users_path %></h3>
+        <% else %>
+        <a class="navbar-brand text-info" href="/">Talk Time</a>
+        <% end %>
+        
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
         </button>
