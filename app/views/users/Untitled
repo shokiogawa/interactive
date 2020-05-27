@@ -69,14 +69,15 @@
               <%= link_to "コメントを削除" , c, method: :delete %>
             <% end %>
             
-            
-<%= form_with(model:  @post.comments.build, local:true) do |f| %>
-                        <div class="form-group">
-                         <%= f.label :content, "コメント追加" %>
-                         <%= f.text_field :content %>
-                         <%= hidden_field_tag :post_id , @post.id %>
-                         <%= hidden_field_tag :user_id, current_user.id %>
-                         
-                        <%= f.submit "追加", class: "" %>
-                       </div>
-                    <% end %>
+
+users/edit=>            
+  <div class="form-group row">
+            <%= f.label :lang2, "第二言語", class:"col-form-label col-sm-2" %>
+            <%= f.select :lang2, [["日本語","日本語"],["英語","英語"],["中国語","中国語"],["フランス語","フランス語"],["イタリア語","イタリア語"],["スペイン語","スペイン語"],["韓国語","韓国語"]], include_blank: "選択してください",class:"form-control col-sm-7" %>
+          </div>
+          
+
+users/show=>
+<p class="card-text">第二言語:&nbsp;&nbsp;&nbsp;&nbsp;  <%= @user.lang2 %></p>
+          
+          

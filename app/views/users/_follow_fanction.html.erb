@@ -9,7 +9,7 @@
             <img class="rounded img-fluid" src="<%= gravatar_url(user, { size: 100 }) %>" alt="">
       <% end %>
      <div class="media-body ml-5">
-         <h5><%= link_to user.name , user_path(user) %></h5><p> 母国語:<%= user.lang1 %>, 第二言語:<%= user.lang2 %></p>
+         <h5><%= link_to user.name , user_path(user) %></h5><p> 母国語:<%= user.lang1 %></p>
          <%= user.profile %>
      </div>
      </li>
