@@ -1,17 +1,14 @@
-
-<% if posts.any? %> 
-
-        <ul class="list-unstyled row">
-          <% posts.each do |post| %>
-           <li class="media col-sm-11 border-top border-bottom">
-               
-               <% if post.user.image_url %>
-                  <%= image_tag post.user.image_url(:thumb) , class:"mb-3 mt-3" %>
-               <% else %>
-                  <img class="rounded img-fluid" src="<%= gravatar_url(post.user, { size: 100 }) %>" alt="">
-               <% end %>
-               
-              <div class="media-body ml-5 mb-3 mt-3">
+<% posts.each do |post| %>
+ <div class="media row border-top border-bottom">
+     <div class="img">
+         <% if post.user.image_url %>
+           <%= image_tag post.user.image_url(:thumb), class:"mb-3 mt-3 rounded-circle" %>
+         <% else %>
+           <img class="rounded img-fluid" src="<%= gravatar_url(post.user, { size: 100 }) %>" alt="">
+         <% end %>
+     </div>
+     
+     <div class="media-body ml-5 mb-3 mt-3">
                   
                   <%= link_to post.user.name, post_path(post) ,class:"mr-3"%>
                   <%= post.created_at %>
@@ -21,16 +18,15 @@
                   <% end %>
                   </p>
                   
-                  <p><%= post.content %></p>
+                  <p class="text-wrap"><%= post.content %></p>
                   
                   <% if current_user == post.user %>
                   <%= link_to "投稿を編集する", edit_post_path(post) %>
                   <%= link_to "メッセージを削除",post, method: :delete, data: { confirm: "本当に削除してよろしいですか? "} %>
                   <% end %>
-             </div>
-             
-            </li>
-          <% end %>
-        </ul>
-<%= paginate posts %>
+     </div>
+ </div>
 <% end %>
+     
+<%= paginate posts %>
+

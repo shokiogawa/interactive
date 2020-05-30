@@ -5,11 +5,11 @@
         
 <div class="row"> 
 
- <div class="col-sm-8 offset-sm-3"> 
+ <div class="col-sm-6"> 
     <div class="row ml-5 mt-5">
         <div clas="col-sm-3">
                <% if @post.user.image_url %>
-                  <%= image_tag @post.user.image_url(:thumb) , class:"mb-3 mt-3" %>
+                  <%= image_tag @post.user.image_url(:thumb) , class:"mb-3 mt-3 rounded-circle" %>
                <% else %>
                   <img class="rounded img-fluid" src="<%= gravatar_url(@post.user, { size: 100 }) %>" alt="">
                <% end %>
@@ -32,7 +32,8 @@
     </div>
 </div>
 
-<div class="col-sm-6 offset-sm-4">
+<div class="col-sm-6">
+<h2 class="heading mt-5 mb-3 ml-5">コメント一覧</h2>
 <% @comments.each do |c| %>    
     <div class="row ml-5">
         <div class="media-body ml-5 mb-1 mt-1 class-sm-9 border-top border-bottom">
@@ -47,8 +48,8 @@
     </div>
 <% end %>
  </div>
- <div class="offset-sm-6">
- 
+ <div class="offset-sm-8">
+                     
                      <%= form_with(model:  @post.comments.build, local:true) do |f| %>
                         <div class="form-group">
                          <%= f.label :content, "コメント追加" %>

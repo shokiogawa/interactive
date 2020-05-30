@@ -3,7 +3,22 @@
        <div class="text-center">
               <h1 class="pt-4">友達を見つけよう</h1>
               <p>友達<span><%= @count_users %>件</p>
+              
        </div>
+</div>
+<div class="row">
+<div class="offset-sm-2 border-bottom">
+<h2 class="mb-5 mt-5 heading">ユーザ一覧</h2>
+<%= form_tag users_path, method: :get, class: 'boards__searchForm' do %>
+       <%= select_tag :language_id, 
+              options_from_collection_for_select(Language.all, :id, :lang2, params[:language_id]),
+              {
+                  prompt: "母国語で絞込",
+                  onchange: "submit(this.form);"
+              }
+       %>
+<% end %>
+</div>
 </div>
 
 
@@ -12,7 +27,7 @@
 
 <div class="row">
 <div class="offset-sm-2">
-<h2 class="mb-5 mt-5">投稿一覧</h2>
+<h2 class="mb-5 mt-5 heading">投稿一覧</h2>
 <%= form_tag users_path, method: :get, class: 'boards__searchForm' do %>
        <%= select_tag :category_id, 
               options_from_collection_for_select(Category.all, :id, :name, params[:category_id]),

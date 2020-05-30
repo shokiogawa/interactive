@@ -1,25 +1,29 @@
 
 <% if users.any? %>
 <div class="row">
- <div class="col-sm-10 offset-sm-2">
-  <h2 class="mb-5 mt-5">ユーザー一覧</h2>
+ <div class="col-sm-10 offset-sm-2 mt-5">
+  
   <ul class="list-unstyled row">
    <% users.each do |user| %>
-     <li class="media mb-4 col-sm-6">
+     <li class="media mb-4 col-sm-5">
+    
       <% if user.image_url %>
-           <%= image_tag user.image_url(:thumb) %>
+           <%= image_tag user.image_url(:thumb), class:"rounded-circle" %>
       <% else %>
             <img class="rounded img-fluid" src="<%= gravatar_url(user, { size: 100 }) %>" alt="">
       <% end %>
-     <div class="media-body ml-5">
-         <h5><%= link_to user.name , user_path(user) %></h5><p> 母国語:<%= user.lang1 %></p>
-         <%= user.profile %>
+     <div class="media-body ml-5 text-justify">
+         <h5><%= link_to user.name , user_path(user) %></h5><p> 学習言語:<%= user.lang1 %>&nbsp;&nbsp;母国語:<%= user.language&.lang2 %></p>
+         <p><%= user.profile %></p>
      </div>
+     
+    
      </li>
    <% end %>
  </ul>
  </div>
 </div>
-<%= paginate users %>
+<% paginate users %>
+
 <% end %>
          

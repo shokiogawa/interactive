@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <% if logged_in? %>
-        <h3><%= link_to "Talk Time", users_path %></h3>
+        <h3 class="text-info"><%= link_to "Talk Time", users_path %></h3>
         <% else %>
         <a class="navbar-brand text-info" href="/">Talk Time</a>
         <% end %>

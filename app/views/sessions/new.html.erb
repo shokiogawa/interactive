@@ -1,20 +1,22 @@
-<div class="text-center mb-5">
-  <h1>Interactive</h1>
-</div>
+
 
 <div class="row">
-  <div class="col-sm-6 offset-sm-3 jumbotron">
+  <div class="col-sm-4 offset-sm-4 jumbotron-fluid">
+    
+    <div class="text-center mb-5">
+      <h1 class="text-info">Talk Time</h1>
+    </div>
 
     <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
 
-      <div class="form-group">
-        <%= f.label :email, 'Email' %>
+      <div class="form-group ">
+        <%= f.label :email, 'Email'%>
         <%= f.email_field :email, :placeholder => "email", class: 'form-control' %>
       </div>
 
-      <div class="form-group">
+      <div class="form-group ">
         <%= f.label :password, 'Password' %>
-        <%= f.password_field :password, :placeholder => "password", class: 'form-control' %>
+        <%= f.password_field :password, :placeholder => "password", class: 'form-control ' %>
       </div>
 
       <%= f.submit 'Log in', class: 'btn btn-primary btn-block mt-5' %>

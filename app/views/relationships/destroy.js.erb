@@ -1,0 +1,2 @@
+$("#follow_form").html("<%= escape_javascript(render 'relationships/follow_button', user: @user ) %>");
+$("#followers").html('フォロワー数<%= @user.followers.count %>');

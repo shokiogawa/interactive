@@ -32,5 +32,7 @@ class User < ApplicationRecord
    
    has_many :comments, dependent: :destroy
    has_many :post1, through: :comments, source: :post, dependent: :destroy
+   
+   belongs_to :language, optional: true
     
 end

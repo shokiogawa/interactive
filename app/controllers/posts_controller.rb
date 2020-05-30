@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   def show
     
     @post = Post.find(params[:id])
+    
     @comments = @post.comments
     
     
@@ -20,13 +21,9 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    if @post.save
-      flash[:success] = "投稿されました"
-      redirect_to user_path(@post.user)
-    else
-      flash.new[:danger] = "投稿に失敗しました"
-      render :new
-    end
+    @post.save
+    
+    @posts = current_user.posts
       
   end
 

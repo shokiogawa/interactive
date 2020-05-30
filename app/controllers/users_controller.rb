@@ -4,20 +4,30 @@ class UsersController < ApplicationController
   
   
   def index
-    @users = User.order(id: :desc).page(params[:page]).per(14)
-    # @posts = Post.order(id: :desc).page(params[:page]).per(14)
+   
     
-    #@posts = params[:category_id].present? ? Category.find(params[:category_id]).posts : Post.all
+    
+    @language = Language.find_by(id: params[:language_id])
+    
+    if @language
+      @users = @language.users.page(params[:page]).per(14)
+    else
+       @users = User.order(id: :desc).page(params[:page]).per(14)
+    end
+
+      
+    
+    
     @category = Category.find_by(id: params[:category_id])
     
     if @category
-      @posts = @category.posts
+      @posts = @category.posts.page(params[:page]).per(14)
     else
       @posts = Post.order(id: :desc).page(params[:page]).per(14)
     end
     
 
-    
+    counts(User.first)
     
     
       
@@ -26,8 +36,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @post = @user.posts.order(id: :desc).page(params[:page]).per(14)
+    @posts = @user.posts.order(id: :desc).page(params[:page]).per(14)
     counts(@user)
+    
+    @post = current_user.posts.build
     
   end
 
@@ -88,7 +100,7 @@ class UsersController < ApplicationController
   end
   
   def user_params1
-    params.require(:user).permit(:name, :lang1, :profile, :image)
+    params.require(:user).permit(:name, :lang1, :profile, :image, :language_id)
   end
   
   

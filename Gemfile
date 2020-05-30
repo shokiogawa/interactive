@@ -65,3 +65,7 @@ gem "kaminari"
 
 gem "carrierwave"
 gem "mini_magick"
+
+gem "jquery-rails"
+
+gem 'bootstrap', '~> 4.5.0'
