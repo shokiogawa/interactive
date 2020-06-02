@@ -5,8 +5,10 @@ class PostsController < ApplicationController
   def show
     
     @post = Post.find(params[:id])
+    @comment = Comment.new
     
-    @comments = @post.comments
+    
+    @comments = @post.comments.order(created_at: :desc)
     
     
   
@@ -21,10 +23,13 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    @post.save
     
-    @posts = current_user.posts
-      
+    if @post.save
+      redirect_to user_path(@post.user)
+    else
+      render :new
+    end
+
   end
 
   def edit
@@ -32,7 +37,9 @@ class PostsController < ApplicationController
   end
   
   def update
+    
     @post = current_user.posts.find_by(id: params[:id])
+    
     
     if @post.update(post_params)
       flash[:success] = "編集しました"
@@ -55,7 +62,7 @@ class PostsController < ApplicationController
   
   private
   def post_params
-    params.require(:post).permit(:content, :title, category_ids: [])
+    params.require(:post).permit(:content, :title, {:category_ids => []})
   end
   
   def correct_user

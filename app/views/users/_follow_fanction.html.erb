@@ -4,7 +4,7 @@
    <% users.each do |user| %>
      <li class="media mb-4 col-sm-6">
       <% if user.image_url %>
-           <%= image_tag user.image_url(:thumb) %>
+           <%= image_tag user.image_url(:thumb), class:"rounded-circle" %>
       <% else %>
             <img class="rounded img-fluid" src="<%= gravatar_url(user, { size: 100 }) %>" alt="">
       <% end %>
@@ -16,5 +16,6 @@
    <% end %>
  </ul>
 <%= paginate users %>
-
 <% end %>
+
+

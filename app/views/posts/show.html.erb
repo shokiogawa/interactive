@@ -3,10 +3,10 @@
                      
         
         
-<div class="row"> 
+<div class="row "> 
 
- <div class="col-sm-6"> 
-    <div class="row ml-5 mt-5">
+ <div class="offset-sm-3 col-sm-6"> 
+    <div class="row ml-5 mt-5 border-bottom">
         <div clas="col-sm-3">
                <% if @post.user.image_url %>
                   <%= image_tag @post.user.image_url(:thumb) , class:"mb-3 mt-3 rounded-circle" %>
@@ -32,34 +32,22 @@
     </div>
 </div>
 
-<div class="col-sm-6">
-<h2 class="heading mt-5 mb-3 ml-5">コメント一覧</h2>
-<% @comments.each do |c| %>    
-    <div class="row ml-5">
-        <div class="media-body ml-5 mb-1 mt-1 class-sm-9 border-top border-bottom">
-            <%= link_to c.user.name, user_path(c.user) %>
-            <%= c.created_at %>
-            <p class="mt-4"><%= c.content %></p>
-            <% if current_user == c.user %>
-              <%= link_to "コメントを削除" , c, method: :delete %>
-            <% end %>
-            
-        </div>
-    </div>
-<% end %>
- </div>
- <div class="offset-sm-8">
-                     
-                     <%= form_with(model:  @post.comments.build, local:true) do |f| %>
-                        <div class="form-group">
-                         <%= f.label :content, "コメント追加" %>
-                         <%= f.text_field :content %>
-                         <%= hidden_field_tag :post_id , @post.id %>
-                         <%= hidden_field_tag :user_id, current_user.id %>
+<div id="comment" class="offset-sm-4 col-sm-5">
+    <%= render 'comments/comment', comments: @comments %>
+</div>
+
+<div class="offset-sm-5 mt-5">
+                    
+                     <%= form_with(model: [@post, @comment]) do |f| %>
+                        <div class="form-group row">
+                         <%= f.label :content, "コメント追加" , class:"col-sm-4"%>
+                         <%= f.text_field :content , class:"col-sm-11 form-control offset-sm-1"%>
                          
-                        <%= f.submit "追加", class: "" %>
+                         
+                        <%= f.submit "送信", class: "offset-sm-7 btn btn-light mt-2" %>
                        </div>
                     <% end %>
+                    
 </div>
 
 

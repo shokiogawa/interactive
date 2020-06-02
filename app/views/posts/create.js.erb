@@ -1,5 +1,6 @@
 $("textarea").val("");
 $("input").val("");
-$('#exampleModal').modal('hide')
-$('.posts').html("<%= escape_javascript(render 'posts/posts', posts: @posts) %>")
+$('#exampleModal').modal('hide');
+$("#pp").html("<%= escape_javascript(render 'posts/posts' , posts: @post.user.posts) %>");
+
 

@@ -15,7 +15,8 @@
         
        <div class="form-group row">
            <%= f.label :category ,"カテゴリー", class: "col-form-label col-sm-2"%>
-            <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category| %>
+           
+           <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category| %>
            
                   <%= category.label do %>
                      <%= category.check_box %>
@@ -23,9 +24,6 @@
                   <% end %>
                   
            <% end %>
-        
-           
-          
         </div>
         
         <div class="row">

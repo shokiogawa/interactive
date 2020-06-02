@@ -1,19 +1,37 @@
 class UsersController < ApplicationController
   before_action :require_user_logged_in, only: [:index, :show]
-  
+  before_action :current_user_now, only: [:edit]
   
   
   def index
-   
-    
     
     @language = Language.find_by(id: params[:language_id])
     
-    if @language
-      @users = @language.users.page(params[:page]).per(14)
-    else
-       @users = User.order(id: :desc).page(params[:page]).per(14)
+    
+  if @language
+    @user1 = @language.users.page(params[:page]).per(14)
+    @count_languages = @language.users.count
+    respond_to do |format|
+      format.html
+      format.js
     end
+    
+    
+    
+  else
+    @users = User.order(id: :desc).page(params[:page]).per(14)
+  end
+    
+  
+    
+    
+    
+    
+    #if @language
+      #@users = @language.users.page(params[:page]).per(14)
+    #else
+       #@users = User.order(id: :desc).page(params[:page]).per(14)
+    #end
 
       
     
@@ -21,13 +39,13 @@ class UsersController < ApplicationController
     @category = Category.find_by(id: params[:category_id])
     
     if @category
-      @posts = @category.posts.page(params[:page]).per(14)
+      @posts = @category.posts.page(params[:page]).per(8)
     else
-      @posts = Post.order(id: :desc).page(params[:page]).per(14)
+      @posts = Post.order(id: :desc).page(params[:page]).per(8)
     end
     
-
-    counts(User.first)
+    #counts(current_user)
+    
     
     
       
@@ -92,6 +110,18 @@ class UsersController < ApplicationController
     counts(@user)
   end
   
+  def recomends
+    @language = Language.find_by(lang2: current_user.lang1)
+    
+    @users = @language.users.order("RAND()").limit(3)
+    #@users = User.where(lang1: current_user.language.lang2)
+    
+
+  
+    
+    
+  end
+  
   
   private
   
@@ -102,6 +132,14 @@ class UsersController < ApplicationController
   def user_params1
     params.require(:user).permit(:name, :lang1, :profile, :image, :language_id)
   end
+  
+ def current_user_now
+   @user = User.find(params[:id])
+   
+   unless @user == current_user
+     redirect_to root_url
+   end
+ end
   
   
 end

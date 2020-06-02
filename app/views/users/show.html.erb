@@ -10,7 +10,7 @@
             
             <div class="card-body">
                 <h6><%= @user.name %></h6>
-                <p class="card-text">学ぶ言語:&nbsp;&nbsp;&nbsp;&nbsp;<%= @user.lang1 %></p>
+                
                 <p class="card-text">母国語:&nbsp;&nbsp;&nbsp;&nbsp;<%= @user.language&.lang2 %></p>
                 <p class="card-text">プロフィール<br><%= @user.profile %></p>
                 
@@ -64,15 +64,12 @@
             <% end %>
             
         </div>
-        <div class="posts">
-        <%= render "posts/posts" , posts: @posts %>
+        <div id="pp">
+          <%= render "posts/posts" , posts: @posts %>
         </div>
        
     </div>
 </div>
-
-
-
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -123,7 +120,8 @@
  　　</div>
 
       </div>
-      
-    </div>
-  </div>
 </div>
+ 
+
+
+
