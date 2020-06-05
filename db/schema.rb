@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_28_001932) do
+ActiveRecord::Schema.define(version: 2020_06_04_043938) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -26,6 +26,12 @@ ActiveRecord::Schema.define(version: 2020_05_28_001932) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "language1s", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "lang1"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "languages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -68,10 +74,12 @@ ActiveRecord::Schema.define(version: 2020_05_28_001932) do
     t.string "password_digest"
     t.string "image"
     t.string "profile"
-    t.string "lang1"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "language_id"
+    t.bigint "language1_id"
+    t.string "remember_digest"
+    t.index ["language1_id"], name: "index_users_on_language1_id"
     t.index ["language_id"], name: "index_users_on_language_id"
   end
 
@@ -82,5 +90,6 @@ ActiveRecord::Schema.define(version: 2020_05_28_001932) do
   add_foreign_key "posts", "users"
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "follow_id"
+  add_foreign_key "users", "language1s"
   add_foreign_key "users", "languages"
 end

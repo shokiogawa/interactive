@@ -3,52 +3,50 @@
                      
         
         
-<div class="row "> 
+<div class="row"> 
 
- <div class="offset-sm-3 col-sm-6"> 
-    <div class="row ml-5 mt-5 border-bottom">
-        <div clas="col-sm-3">
+ <div class="col-sm-8 offset-sm-2"> 
+  <div class="row rounded border">
+    <div class="media border rounded col-sm-12">
                <% if @post.user.image_url %>
-                  <%= image_tag @post.user.image_url(:thumb) , class:"mb-3 mt-3 rounded-circle" %>
+                  <%= image_tag @post.user.image_url(:thumb) , class:"mb-3 mt-3 ml-3 rounded-circle" %>
                <% else %>
                   <img class="rounded img-fluid" src="<%= gravatar_url(@post.user, { size: 100 }) %>" alt="">
                <% end %>
-        </div>
-        <div class="media-body ml-5 mb-3 mt-3 class-sm-9">
+        <div class="media-body ml-5">
                   <%= @post.user.name%>
                   <%= @post.created_at %>
                   
                   <h5 class="mt-4"><%= @post.content %></h5>
                   
                   <% if current_user == @post.user %>
-                  <%= link_to "投稿を編集する", edit_post_path(@post.user) %>
-                   <%= link_to "メッセージを削除", @post, method: :delete, data: { confirm: "本当に削除してよろしいですか? "}, class:"" %>
-                  <% end %>
-                  
-                   
-                  
-                     
-        </div>
-    </div>
-</div>
-
-<div id="comment" class="offset-sm-4 col-sm-5">
-    <%= render 'comments/comment', comments: @comments %>
-</div>
-
-<div class="offset-sm-5 mt-5">
-                    
-                     <%= form_with(model: [@post, @comment]) do |f| %>
-                        <div class="form-group row">
-                         <%= f.label :content, "コメント追加" , class:"col-sm-4"%>
-                         <%= f.text_field :content , class:"col-sm-11 form-control offset-sm-1"%>
-                         
-                         
-                        <%= f.submit "送信", class: "offset-sm-7 btn btn-light mt-2" %>
-                       </div>
+                    <%= link_to  @post, method: :delete, data: { confirm: "本当に削除してよろしいですか? "}, class:"text-right" do %>
+                     <i class="fas fa-trash-alt "></i>
                     <% end %>
+                  <% end %>
+        </div>
+         
+    </div>
+          <button type="button" class="btn btn-outline-info offset-sm-3 mt-3 btn-sm col-sm-6" data-toggle="modal" data-target="#exampleModal">
+          コメントする
+          </button> 
+        
+        <div id="comment" class="col-sm-10 offset-sm-1">
+           <%= render 'comments/comment', comments: @comments %>
+       </div>
+  </div>
+   
+  
+   
+
+</div>
+
+
+
+
                     
-</div>
+                     
+                    
 
 
         
@@ -56,11 +54,35 @@
 
 </div>
 
-
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">コメント</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_with(model: [@post, @comment]) do |f| %>
+            <div class="form-group">
+               <%= f.label :content, "コメント追加" %>
+               <%= f.text_area :content , class:" form-control"%>
+            </div>
+                    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <%= f.submit "送信", class: " btn btn-info" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
        
         
         
-        
+      
         
         
         

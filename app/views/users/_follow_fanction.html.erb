@@ -2,14 +2,27 @@
 
   <ul class="list-unstyled row">
    <% users.each do |user| %>
-     <li class="media mb-4 col-sm-6">
+     <li class="media mb-4 col-sm-6 user">
       <% if user.image_url %>
            <%= image_tag user.image_url(:thumb), class:"rounded-circle" %>
       <% else %>
             <img class="rounded img-fluid" src="<%= gravatar_url(user, { size: 100 }) %>" alt="">
       <% end %>
      <div class="media-body ml-5">
-         <h5><%= link_to user.name , user_path(user) %></h5><p> 母国語:<%= user.lang1 %></p>
+         <h5><%= link_to user.name , user_path(user) %></h5>
+         <p> 
+         <% if user.language %>
+         学習言語:&nbsp;<%= user.language.lang2 %>&nbsp;&nbsp;&nbsp;&nbsp;
+         <% else %>
+         学習言語:未選択&nbsp;&nbsp;&nbsp;&nbsp;
+         <% end %>
+         <% if user.language1 %>
+          母国語:&nbsp;<%= user.language1.lang1 %>
+         <% else %>
+          母国語:未選択
+         <% end %>
+         </p>
+         
          <%= user.profile %>
      </div>
      </li>

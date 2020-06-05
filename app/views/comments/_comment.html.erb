@@ -1,51 +1,61 @@
 
-<p class="heading mt-5 mb-3 ">コメント一覧</p>
+
 <% if comments.any? %>
 <h6 class="more" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="cursor:pointer;">もっと見る....</h6>
 
 <% comments.first(2).each do |c| %>    
-    <div class="row ">
-        <div class="media-body ml-5 class-sm-9 border-top border-bottom">
+      <div class="media border-bottom ">
+               <% if @post.user.image_url %>
+                  <%= image_tag c.user.image_url(:thumb2) , class:"mb-3 mt-3 ml-3 rounded-circle" %>
+               <% else %>
+                  <img class="rounded img-fluid" src="<%= gravatar_url(c.user, { size: 100 }) %>" alt="">
+               <% end %>
+        <div class="media-body ml-5">
             <%= link_to c.user.name, user_path(c.user) %>
             <p class="mt-1"><%= c.content %></p>
             <div class=row>
-            <p class="col-sm-4">
+            
             <% if current_user == c.user %>
-              <%= link_to "コメントを削除" , post_comment_path(c.post_id, c.id), method: :delete %>
+             <p class="col-sm-4"><%= link_to "コメントを削除" , post_comment_path(c.post_id, c.id), method: :delete %></p>
             <% end %>
-            </p>
             <p class="col-sm-4 offset-sm-4"><%= c.created_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
             </div>
             
         </div>
-    </div>
+        
+      </div>
 <% end %>
 
  
       
     
 
-    <div class="collapse" id="collapseExample">
+<div class="collapse" id="collapseExample">
           
     <% comments.offset(2).each do |c| %>    
-      <div class="row ">
-        <div class="media-body ml-5 class-sm-9 border-top border-bottom">
+      <div class="media border-bottom ">
+               <% if @post.user.image_url %>
+                  <%= image_tag c.user.image_url(:thumb2) , class:"mb-3 mt-3 ml-3 rounded-circle" %>
+               <% else %>
+                  <img class="rounded img-fluid" src="<%= gravatar_url(c.user, { size: 100 }) %>" alt="">
+               <% end %>
+        <div class="media-body ml-5">
             <%= link_to c.user.name, user_path(c.user) %>
             <p class="mt-1"><%= c.content %></p>
             <div class=row>
-            <p class="col-sm-4">
+            
             <% if current_user == c.user %>
-              <%= link_to "コメントを削除" , post_comment_path(c.post_id, c.id), method: :delete %>
+             <p class="col-sm-4"><%= link_to "コメントを削除" , post_comment_path(c.post_id, c.id), method: :delete %></p>
             <% end %>
-            </p>
             <p class="col-sm-4 offset-sm-4"><%= c.created_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
             </div>
             
         </div>
+        
       </div>
    <% end %>
    
           
           
-    </div>
+</div>
 <% end %>

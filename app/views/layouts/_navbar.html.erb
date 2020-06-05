@@ -1,9 +1,9 @@
 <header>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <% if logged_in? %>
-        <h3 class="text-info"><%= link_to "Talk Time", users_path %></h3>
+        <a class="navbar-brand text-info ml-5" href="/">Talk Time</a>
         <% else %>
-        <a class="navbar-brand text-info" href="/">Talk Time</a>
+        <a class="navbar-brand text-info ml-5" href="/">Talk Time</a>
         <% end %>
         
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
@@ -14,8 +14,16 @@
             <ul class="navbar-nav">
                 <% if logged_in? %>
                 <li class="nav-item"><%= link_to "ユーザー一覧", users_path, class: "nav-link" %></li>
-                <li class="nav-item"><%= link_to "プロフィール", user_path(current_user), class: "nav-link" %></li>
-                <li class="nav-item"><%= link_to "ログアウト",logout_path, method: :delete, class:"nav-link" %></li>
+                
+                <li class="nav-item dropdown">
+                   <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %></a>
+                   <ul class="dropdown-menu dropdown-menu-right">
+                        <li class="dropdown-item"><%= link_to "プロフィール", user_path(current_user), class: "nav-link text-info" %></li>
+                        <li class="dropdown-item"><%= link_to "友達一覧" , followings_user_path(current_user), class: "nav-link text-info" %></lo>
+                    <div class="dropdown-divider"></div>
+                      <li class="dropdown-item"><%= link_to "ログアウト",logout_path, method: :delete, class:"nav-link text-info" %></li>
+                   </ul>
+                </li>
                 
                <% else %>
                 <li class="nav-item"><%= link_to "新規登録", signup_path, class: "nav-link" %></li>

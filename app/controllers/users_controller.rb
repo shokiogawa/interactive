@@ -1,26 +1,24 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:index, :show]
-  before_action :current_user_now, only: [:edit]
+  before_action :require_user_logged_in, only: [ :show]
+  #before_action :current_user_now, only: [:edit]
   
   
   def index
+     if logged_in?
+     @recommends = User.where(language_id: current_user.language1.id, language1_id: current_user.language.id ).order("RAND()").limit(4)
+     end
     
     @language = Language.find_by(id: params[:language_id])
-    
-    
-  if @language
-    @user1 = @language.users.page(params[:page]).per(14)
-    @count_languages = @language.users.count
-    respond_to do |format|
-      format.html
-      format.js
+    if @language
+      @user1 = @language.users.page(params[:page]).per(14)
+      @count_languages = @language.users.count
+      respond_to do |format|
+        format.html
+        format.js
+      end
+    else
+      @users = User.order(id: :desc).page(params[:page]).per(14)
     end
-    
-    
-    
-  else
-    @users = User.order(id: :desc).page(params[:page]).per(14)
-  end
     
   
     
@@ -111,9 +109,10 @@ class UsersController < ApplicationController
   end
   
   def recomends
-    @language = Language.find_by(lang2: current_user.lang1)
+    #@language = Language.find_by(lang2: current_user.lang1)
+    @users = User.where(language_id: current_user.language1.id, language1_id: current_user.language.id ).order("RAND()").limit(3)
     
-    @users = @language.users.order("RAND()").limit(3)
+    #@users = @language.users.order("RAND()").limit(3)
     #@users = User.where(lang1: current_user.language.lang2)
     
 
@@ -126,11 +125,11 @@ class UsersController < ApplicationController
   private
   
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password, :password_confirmation, :language_id, :language1_id)
   end
   
   def user_params1
-    params.require(:user).permit(:name, :lang1, :profile, :image, :language_id)
+    params.require(:user).permit(:name, :lang1, :profile, :image, :language_id, :language1_id)
   end
   
  def current_user_now

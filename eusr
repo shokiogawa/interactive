@@ -1,0 +1,15 @@
+
+[1mFrom:[0m /home/ec2-user/environment/interactive/app/views/relationships/_follow_button.html.erb:14 ActionView::CompiledTemplates#_app_views_relationships__follow_button_html_erb__2434224686089218896_70005286863200:
+
+     [1;34m9[0m:    
+    [1;34m10[0m:   <% else %>
+    [1;34m11[0m:   
+    [1;34m12[0m:    <%= form_with(model: current_user.relationships.build, method: :post) do |f| %>
+    [1;34m13[0m:    <% binding.pry %>
+ => [1;34m14[0m:     <%= hidden_field_tag :follow_id, user.id %>
+    [1;34m15[0m:     <%= f.submit "フォローする" ,class: "btn btn-outline-info" %>
+    [1;34m16[0m:     <% end %>
+    [1;34m17[0m:     
+    [1;34m18[0m:   <% end %>
+    [1;34m19[0m: <% end %>
+

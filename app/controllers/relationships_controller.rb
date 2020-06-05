@@ -2,20 +2,22 @@ class RelationshipsController < ApplicationController
   before_action :require_user_logged_in
   
   def create
+    
+    
     @user = User.find(params[:follow_id])
     current_user.follow(@user)
-    #respond_to do |format|
-      #format.html {redirect_to @user}
-      #format.js
-    #end
+    
+    respond_to do |format|
+      format.html {redirect_to @user}
+      format.js
+    end
+    
+    
+    #flash[:success] = 'ユーザをフォローしました。'
+    #redirect_to root_url
+    
   end
     
-    
-    
-    
-   # flash[:success] ="フォローしました"
-    #redirect_to user
-    #end
 
   def destroy
     @user = User.find(params[:follow_id])
@@ -24,10 +26,8 @@ class RelationshipsController < ApplicationController
       #format.html {redirect_to @user}
       #format.js
     #end
+    #flash[:success] = 'ユーザのフォローを解除しました。'
+    #redirect_to root_url
   end
     
-    
-    #flash[:danger] = "フォローを解除しました"
-    #redirect_to user
-    #end
 end
