@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_user_logged_in, only: [ :show]
-  #before_action :current_user_now, only: [:edit]
-  
+  before_action :current_user_now, only: [:edit]
+  before_action :set_user, only: [:show, :edit, :update, :followings, :followers]
   
   def index
      if logged_in?
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    
     @posts = @user.posts.order(id: :desc).page(params[:page]).per(14)
     counts(@user)
     
@@ -78,11 +78,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+   
   end
 
   def update
-    @user = User.find(params[:id])
+    
     
     if @user.update(user_params1)
       flash[:success] ="編集に成功しました"
@@ -97,29 +97,17 @@ class UsersController < ApplicationController
   end
   
   def followings
-    @user = User.find(params[:id])
+    
     @followings = @user.followings.page(params[:page])
     counts(@user)
   end
   
   def followers
-    @user = User.find(params[:id])
+    
     @followers = @user.followers.page(params[:page])
     counts(@user)
   end
   
-  def recomends
-    #@language = Language.find_by(lang2: current_user.lang1)
-    @users = User.where(language_id: current_user.language1.id, language1_id: current_user.language.id ).order("RAND()").limit(3)
-    
-    #@users = @language.users.order("RAND()").limit(3)
-    #@users = User.where(lang1: current_user.language.lang2)
-    
-
-  
-    
-    
-  end
   
   
   private
@@ -139,6 +127,11 @@ class UsersController < ApplicationController
      redirect_to root_url
    end
  end
+ 
+ def set_user
+   @user = User.find(params[:id])
+ end
+   
   
   
 end

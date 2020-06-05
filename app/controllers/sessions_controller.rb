@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
     email = params[:session][:email].downcase
     password = params[:session][:password]
     if login(email, password)
+      remember(@user)
       flash[:success] = "ログインしました"
       redirect_to user_path(current_user)
     else 
@@ -16,8 +17,10 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
-    flash[:success] = "ログアウトしました"
+    log_out if logged_in?
+    
+    #session[:user_id] = nil
+    #flash[:success] = "ログアウトしました"
     redirect_to root_url
   end
   
@@ -31,6 +34,13 @@ class SessionsController < ApplicationController
        return false
      end
    end
+   
+   def remember(user)
+     user.remember
+     cookies.permanent.signed[:user_id] = user.id
+     cookies.permanent[:remember_token] = user.remember_token
+   end
+  
   
   
   

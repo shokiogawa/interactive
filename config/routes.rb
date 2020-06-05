@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
 
-  get 'comments/create'
-  get 'comments/destroy'
-  get 'relationships/create'
-  get 'relationships/destroy'
+  
+ 
  
   get 'sessions/new'
   get 'sessions/create'
