@@ -44,11 +44,13 @@ test:
 #
 # You can use this database configuration with:
 #
-#   production:
+#  production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
   database: interactive_production
   username: interactive
   password: <%= ENV['INTERACTIVE_DATABASE_PASSWORD'] %>
