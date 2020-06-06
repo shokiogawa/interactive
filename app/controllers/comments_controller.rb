@@ -8,6 +8,10 @@ class CommentsController < ApplicationController
     @comment.save
     
     @comments = @post.comments.order(created_at: :desc)
+    respond_to do |format|
+        format.html
+        format.js
+      end
   
   end
    

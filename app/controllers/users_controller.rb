@@ -19,17 +19,7 @@ class UsersController < ApplicationController
     else
       @users = User.order(id: :desc).page(params[:page]).per(14)
     end
-    
-  
-    
-    
-    
-    
-    #if @language
-      #@users = @language.users.page(params[:page]).per(14)
-    #else
-       #@users = User.order(id: :desc).page(params[:page]).per(14)
-    #end
+
 
       
     
@@ -42,7 +32,7 @@ class UsersController < ApplicationController
       @posts = Post.order(id: :desc).page(params[:page]).per(8)
     end
     
-    #counts(current_user)
+    
     
     
     
@@ -56,6 +46,11 @@ class UsersController < ApplicationController
     counts(@user)
     
     @post = current_user.posts.build
+    
+    respond_to do |format|
+        format.html
+        format.js
+      end
     
   end
 
