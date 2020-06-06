@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   
   def index
      if logged_in?
-     @recommends = User.where(language_id: current_user.language1.id, language1_id: current_user.language.id ).order("RAND()").limit(4)
+     @recommends = User.where(language_id: current_user.language1&.id, language1_id: current_user.language&.id ).order("RAND()").limit(4)
      end
     
     @language = Language.find_by(id: params[:language_id])
