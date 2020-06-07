@@ -64,7 +64,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "kaminari"
 
-gem "carrierwave"
+gem 'carrierwave', '~> 1.3', '>= 1.3.1'
+gem 'cloudinary'
 gem "mini_magick"
 
 gem "jquery-rails"

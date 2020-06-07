@@ -86,6 +86,7 @@ class UsersController < ApplicationController
       flash.now[:danger] = "編集に失敗しました"
       render :edit
     end
+    
   end
 
   def destroy
