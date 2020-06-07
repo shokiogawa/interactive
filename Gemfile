@@ -78,3 +78,5 @@ end
 gem 'listen', '>= 3.0.5', '< 3.2'
 
 gem "aws-sdk-s3", require: false
+
+gem "fog-aws"
