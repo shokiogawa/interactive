@@ -45,7 +45,7 @@ test:
 # You can use this database configuration with:
 #
 #  production:
-    url: <%= ENV['DATABASE_URL'] %>
+  
 #
 production:
   adapter: postgresql
@@ -54,3 +54,4 @@ production:
   database: interactive_production
   username: interactive
   password: <%= ENV['INTERACTIVE_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
