@@ -1,9 +1,9 @@
 <% posts.each do |post| %>
- <div class="media row border-top border-bottom">
-     <%= link_to post_path(post) ,class:"mr-3" do %>
+ <div class="media border-top border-bottom">
+     <%= link_to post_path(post) ,class:"" do %>
      <div class="img">
          <% if post.user.image_url %>
-           <%= image_tag post.user.image_url(:thumb), class:"mb-3 mt-3 rounded-circle" %>
+           <%= image_tag post.user.image_url(:thumb1), class:"mb-3 mt-3 rounded-circle" %>
          <% else %>
            <img class="rounded img-fluid" src="<%= gravatar_url(post.user, { size: 100 }) %>" alt="">
          <% end %>
@@ -11,10 +11,8 @@
      <% end %>
      
      <div class="media-body ml-5 mb-3 mt-3">
-                  
-                  <%= post.user.name %>
-                  <%= post.created_at %>
-                  <p>カテゴリー:
+                  <p>
+                  <%= post.user.name %>&nbsp;&nbsp;&nbsp;&nbsp;
                   <% post.categorys.each do |category| %>
                    <%= category.name %>
                   <% end %>

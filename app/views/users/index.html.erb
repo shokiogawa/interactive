@@ -1,5 +1,8 @@
+
+
+    
 <% if logged_in? %>
-<div class="show1 ">
+<div class="show1">
        <div class="text-center">
               <h1 class="pt-4">友達を見つけよう</h1>
               <% if logged_in? %>
@@ -28,11 +31,13 @@
 
 
 <div class="row">
-<div class="offset-sm-2 border-bottom">
+    
+<div class="offset-sm-2 col-sm-9 bg-white rounded mt-5">
+ <div class=" border-bottom">
         
-<h2 class="mb-5 mt-5 heading"><i class="fas fa-users mr-3"></i>ユーザ一覧</h2>
+  <h2 class="mb-5 mt-5 heading"><i class="fas fa-users mr-3"></i>ユーザ一覧</h2>
 
-<%= form_with url: users_path, method: :get do |f| %>
+    <%= form_with url: users_path, method: :get do |f| %>
        <%= select_tag :language_id, 
               options_from_collection_for_select(Language.all, :id, :lang2, params[:language_id]),
               {
@@ -44,22 +49,23 @@
                   
               }
        %>
-<%= f.submit %>
-<% end %>
-<% unless logged_in? %>
-<p class="mt-5">ユーザーの詳細を表示するにはログインしてください</p>
-<% end %>
+    <%= f.submit %>
+    <% end %>
+    <% unless logged_in? %>
+     <p class="mt-5">ユーザーの詳細を表示するにはログインしてください</p>
+    <% end %>
+ </div>
+
+
+
+
+   <div id="user_list" class="">
+     <%= render "users", users: @users %>
+   </div>
 </div>
 
-</div>
 
-
-<div id="user_list">
-<%= render "users", users: @users %>
-</div>
-
-<div class="row">
-<div class="offset-sm-2">
+<div class="offset-sm-2 col-sm-9 bg-white rounded mt-5">
 <h2 class="mb-5 mt-5 heading">投稿一覧</h2>
 <%= form_tag users_path, method: :get, class: 'boards__searchForm' do %>
        <%= select_tag :category_id, 
@@ -73,13 +79,14 @@
 <% unless logged_in? %>
 <p class="mt-5">投稿の詳細を表示するにはログインしてください</p>
 <% end %>
+
+
+
+    <div class="">
+      <%= render "posts/posts", posts: @posts %>
+    </div>
 </div>
-</div>
-<div class=row>
-    <div class="col-sm-10 offset-sm-2">
-<%= render "posts/posts", posts: @posts %>
-   </div>
- </div>
+
 
 
 
@@ -141,3 +148,4 @@
 </div>
 
 <% end %>
+</div>
