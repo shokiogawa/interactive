@@ -45,7 +45,7 @@ class PostsController < ApplicationController
       flash[:success] = "編集しました"
       redirect_to user_path(@post.user)
     else
-      flash.new[:danger] = "編集に失敗しました"
+      flash.now[:danger] = "編集に失敗しました"
       render :edit
     end
       

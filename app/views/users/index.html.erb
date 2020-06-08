@@ -49,7 +49,7 @@
                   
               }
        %>
-    <%= f.submit %>
+    <%= f.submit "絞り込む" %>
     <% end %>
     <% unless logged_in? %>
      <p class="mt-5">ユーザーの詳細を表示するにはログインしてください</p>
@@ -67,14 +67,15 @@
 
 <div class="offset-sm-2 col-sm-9 bg-white rounded mt-5">
 <h2 class="mb-5 mt-5 heading">投稿一覧</h2>
-<%= form_tag users_path, method: :get, class: 'boards__searchForm' do %>
+<%= form_with url: users_path, local:true, method: :get  do |f| %>
        <%= select_tag :category_id, 
               options_from_collection_for_select(Category.all, :id, :name, params[:category_id]),
               {
                   prompt: "カテゴリーで絞込",
-                  onchange: "submit(this.form);"
+                  
               }
        %>
+<%= f.submit "絞り込む" %>
 <% end %>
 <% unless logged_in? %>
 <p class="mt-5">投稿の詳細を表示するにはログインしてください</p>

@@ -212,3 +212,60 @@ end
 
 # 日本語ファイル名の設定
 CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
+
+
+ <button type="button" class="btn btn-outline-info mb-1 col-sm-6 offset-sm-3" data-toggle="modal" data-target="#exampleModal">
+               新規投稿
+            </button>
+------------------------------------------------------------------------
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">新規投稿</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     <%= form_with model: @post do |f| %>
+     <%= render 'layouts/error_messages', model: @post%>
+      <div class="modal-body">
+        <div class="form-group row">
+            <%= f.label :title, "タイトル", class: "col-form-label col-sm-3" %>
+            <%= f.text_field :title, class: "form-control col-sm-8" %>
+        </div>
+        
+        <div class="form-group row mt-5">
+            <%= f.label :content, "記入欄", class: "col-form-label col-sm-3" %>
+            <%= f.text_area :content, class: "form-control col-sm-8", rows:10 %>
+        </div>
+        
+         <div class="form-group row">
+           <%= f.label :category ,"カテゴリー", class: "col-form-label col-sm-3" %>
+           <div class="col-sm-8">
+            <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category| %>
+           
+                  <%= category.label do %>
+                     <%= category.check_box %>
+                     <%= category.text  %>
+                  <% end %>
+                  
+           <% end %>
+           </div>
+    　</div>
+        
+      
+        
+       
+        
+        
+    　</div>
+    　 <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+        <%= f.submit "投稿する", class:"btn btn-primary" %>
+      </div>
+    　<% end %>
+ 　　</div>
+
+      </div>
+</div>

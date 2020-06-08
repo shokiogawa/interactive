@@ -5,12 +5,14 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
     @comment.user_id = current_user.id
-    @comment.save
+    
     
     @comments = @post.comments.order(created_at: :desc)
-    respond_to do |format|
-        format.html
-        format.js
+    
+    if @comment.save
+     render :create
+    else
+      render:error
     end
   
   end
