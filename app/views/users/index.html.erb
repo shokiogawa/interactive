@@ -120,7 +120,13 @@
                  <img class="rounded img-fluid" src="<%= gravatar_url(recommend, { size: 100 }) %>" alt="">
                 <% end %>
                 <div class="media-body ml-5 text-justify mb-3">
-                <h5><%= link_to recommend.name , user_path(recommend) %></h5><p> 学習言語:<%= recommend.language1&.lang1 %>&nbsp;&nbsp;母国語:<%= recommend.language&.lang2 %></p>
+                <h5 id="u-<%= recommend.id %>"><%= link_to recommend.name, user_path(recommend) %></h5>
+                <script type="text/javascript">
+                $('#u-<%= recommend.id %>').click(function(){
+                 $('#exampleModal').hide();
+                 });
+                 </script>
+                 <p> 学習言語:<%= recommend.language1&.lang1 %>&nbsp;&nbsp;母国語:<%= recommend.language&.lang2 %></p>
                  <p><%= recommend.profile %><%= recommend.id %></p>
                  <div id="follow_form1-<%= recommend.id %>">
                   <%= render "relationships/follow_button", user: recommend %>
