@@ -1,5 +1,9 @@
-<% posts.each do |post| %>
- <div class="media border-top border-bottom">
+
+
+<div class="row">
+<h1 class="offset-sm-2 mb-5">タイムライン</h1>
+<% @posts.each do |post| %>
+ <div class="media border-top border-bottom offset-sm-2 col-sm-8">
      <%= link_to post_path(post) ,class:"" do %>
      <div class="img">
          <% if post.user.image_url %>
@@ -18,7 +22,7 @@
                   <% end %>
                   </p>
                   
-                  <p class="text-wrap"><%= simple_format(post.content) %></p>
+                  <p class="text-wrap"><%= post.content %></p>
                   
                   <% if current_user == post.user %>
                      <%= link_to "投稿を編集する", edit_post_path(post) %>
@@ -26,10 +30,11 @@
                         <i class="fas fa-trash-alt"></i>
                      <% end %>
                   <% end %>
+                  <P><%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
      </div>
  </div>
 
 <% end %>
      
-<%= paginate posts %>
-
+<%= paginate @posts %>
+</div>

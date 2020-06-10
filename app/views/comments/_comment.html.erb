@@ -12,7 +12,7 @@
                <% end %>
         <div class="media-body ml-5">
             <%= link_to c.user.name, user_path(c.user) %>
-            <p class="mt-1"><%= c.content %></p>
+            <p class="mt-1"><%= simple_format(c.content) %></p>
             <div class=row>
             
             <% if current_user == c.user %>

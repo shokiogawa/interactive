@@ -9,6 +9,7 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
     validates :language1_id, presence: true
     validates :language_id, presence: true
+    
                     
    mount_uploader :image, ImageUploader
    

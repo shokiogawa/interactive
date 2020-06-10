@@ -13,7 +13,13 @@
             <img class="rounded img-fluid" src="<%= gravatar_url(user, { size: 100 }) %>" alt="">
       <% end %>
      <div class="media-body ml-5 text-justify">
-         <h5><%= link_to user.name , user_path(user) %></h5><p> 学習言語:<%= user.language1&.lang1 %>&nbsp;&nbsp;&nbsp;&nbsp;母国語:<%= user.language&.lang2 %></p>
+      <% if user.name %>
+         <h5><%= link_to user.name , user_path(user) %></h5>
+      <% else %>
+         <h5><%= link_to 'unknown' , user_path(user) %></h5>
+      <% end %>
+         
+         <p> 学習言語:<%= user.language1&.lang1 %>&nbsp;&nbsp;&nbsp;&nbsp;母国語:<%= user.language&.lang2 %></p>
          <p><%= user.profile %></p>
      </div>
      

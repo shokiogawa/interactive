@@ -12,7 +12,7 @@
                 <h6><%= @user.name %></h6>
                 <p class="card-text">学習言語:&nbsp;&nbsp;&nbsp;&nbsp;<%= @user.language1&.lang1 %></p>
                 <p class="card-text">母国語:&nbsp;&nbsp;&nbsp;&nbsp;<%= @user.language&.lang2 %></p>
-                <p class="card-text">プロフィール<br><%= @user.profile %></p>
+                <p class="card-text">プロフィール<br><%= simple_format(@user.profile) %></p>
                 
                 
                 
