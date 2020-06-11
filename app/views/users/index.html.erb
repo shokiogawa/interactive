@@ -67,7 +67,7 @@
 
 <div class="offset-sm-2 col-sm-9 bg-white rounded mt-5">
 <h2 class="mb-5 mt-5 heading">投稿一覧</h2>
-<%= form_with url: users_path, local:true, method: :get  do |f| %>
+<%= form_with url: users_path, method: :get  do |f| %>
        <%= select_tag :category_id, 
               options_from_collection_for_select(Category.all, :id, :name, params[:category_id]),
               {
@@ -83,7 +83,7 @@
 
 
 
-    <div class="">
+    <div id="post">
       <%= render "posts/posts", posts: @posts %>
     </div>
 </div>

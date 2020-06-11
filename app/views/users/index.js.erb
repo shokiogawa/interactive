@@ -1,2 +1,3 @@
-$("#user_list").html("<%= escape_javascript(render 'users', users: @user1 ) %>");
+$("#user_list").html("<%= escape_javascript(render 'users', users: @users ) %>");
 $("#count").html('友達<%= @count_languages %>件');
+$("#post").html("<%= escape_javascript(render "posts/posts", posts: @posts ) %>");

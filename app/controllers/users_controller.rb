@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     
     @language = Language.find_by(id: params[:language_id])
     if @language
-      @user1 = @language.users.page(params[:page]).per(14)
+      @users = @language.users.page(params[:page]).per(14)
       @count_languages = @language.users.count
       respond_to do |format|
         format.html
@@ -28,6 +28,10 @@ class UsersController < ApplicationController
     
     if @category
       @posts = @category.posts.page(params[:page]).per(8)
+      respond_to do |format|
+        format.html
+        format.js
+      end
     else
       @posts = Post.order(id: :desc).page(params[:page]).per(8)
     end

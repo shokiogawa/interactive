@@ -1,7 +1,9 @@
 
 
 <% if comments.any? %>
-<h6 class="more" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="cursor:pointer;">もっと見る....</h6>
+ <% if comments.count > 2 %>
+   <h6 class="more" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="cursor:pointer;">もっと見る....</h6>
+ <% end %>
 
 <% comments.first(2).each do |c| %>    
       <div class="media border-bottom ">

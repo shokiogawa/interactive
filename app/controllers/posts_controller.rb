@@ -16,6 +16,7 @@ class PostsController < ApplicationController
     @comments = @post.comments.order(created_at: :desc)
     
     
+    
   
   
     
