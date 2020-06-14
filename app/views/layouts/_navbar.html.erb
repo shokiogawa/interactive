@@ -1,10 +1,8 @@
 <header>
     <nav class="navbar navbar-expand-sm navbar-light bg-info">
-        <% if logged_in? %>
+        
         <a class="navbar-brand text-light ml-5" href="/">Talk Time</a>
-        <% else %>
-        <a class="navbar-brand text-light ml-5" href="/">Talk Time</a>
-        <% end %>
+
         
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
@@ -17,15 +15,11 @@
                 <li class="nav-item"><%= link_to "タイムライン", posts_path, class: "nav-link text-light" %></li>
                 <li class="nav-item dropdown">
                    <a class="nav-link dropdown-toggle text-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                       <% if current_user.name %>
-                        <%= current_user.name %>
-                       <% else %>
-                       unknown
-                       <% end %>
+                       その他
                     </a>
                    <ul class="dropdown-menu dropdown-menu-right">
                         <li class="dropdown-item"><%= link_to "プロフィール", user_path(current_user), class: "nav-link text-info" %></li>
-                        <li class="dropdown-item"><%= link_to "友達一覧" , followings_user_path(current_user), class: "nav-link text-info" %></lo>
+                        <li class="dropdown-item"><%= link_to "友達一覧" , followings_user_path(current_user), class: "nav-link text-info" %></li>
                     <div class="dropdown-divider"></div>
                       <li class="dropdown-item"><%= link_to "ログアウト",logout_path, method: :delete, class:"nav-link text-info" %></li>
                    </ul>

@@ -17,7 +17,18 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  
 }
+
+.jumbotron{
+    background-image:url(9042.jpg);
+    background-size:cover;
+    height:500px;
+    width:100%;
+    
+}
+
+
 
 footer {
   margin-top: auto;
