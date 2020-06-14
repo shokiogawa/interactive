@@ -20,13 +20,17 @@
   </head>
 
   <body class="bg-light">
+ 
     <%= render "layouts/navbar" %>
-    
   
-      <%= render "layouts/flash_messages" %>
+    <%= render "layouts/flash_messages" %>
+  
+   <div class=" content" id="wrapper">
       
     　<%= yield %>
+  
     　<%= render "layouts/footer" %>
+  </div>
     
   </body>
 </html>

@@ -1,16 +1,16 @@
 
 <% if users.any? %>
 
- <div class=" mt-5">
+ <div class=" mt-5 ">
   
-  <ul class="list-unstyled row">
+  <ul class="list-unstyled  row">
    <% users.each do |user| %>
      <li class="media mb-4 col-sm-6">
     
       <% if user.image_url %>
-           <%= image_tag user.image_url(:thumb), class:"rounded-circle" %>
+           <%= image_tag user.image_url(:thumb1), class:"rounded-circle" %>
       <% else %>
-            <img class="rounded img-fluid" src="<%= gravatar_url(user, { size: 100 }) %>" alt="">
+            <img class="rounded img-fluid" src="<%= gravatar_url(user, { size: 80 }) %>" alt="">
       <% end %>
      <div class="media-body ml-5 text-justify">
       <% if user.name %>
