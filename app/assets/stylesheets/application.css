@@ -14,14 +14,18 @@
  *= require_self
  */
  #wrapper {
-     display: flex;
+  display: flex;
   flex-direction: column;
   min-height: 100vh;
- }
-
-footer{
-    margin-top: auto;
 }
+
+footer {
+  margin-top: auto;
+}
+
+　
+ 
+ 
 
 header{
     margin:0px;
