@@ -109,15 +109,15 @@
       <div class="modal-body">
           
        <div class="row">
-         <div class="col-sm-12">
-          <ul class="list-unstyled row">
+         <div class="col-12 row">
+          
             <% @recommends.each do |recommend| %>
             <% unless current_user.following?(recommend) %>
-            <li class="media mb-3 border-bottom col-sm-12">
+            <div class="media mb-3 border-bottom col-12">
                 <% if recommend.image_url %>
-                 <%= image_tag recommend.image_url(:thumb), class:"rounded-circle" %>
+                 <%= image_tag recommend.image_url(:thumb2), class:"rounded-circle" %>
                 <% else %>
-                 <img class="rounded img-fluid" src="<%= gravatar_url(recommend, { size: 100 }) %>" alt="">
+                 <img class="rounded img-fluid" src="<%= gravatar_url(recommend, { size: 60 }) %>" alt="">
                 <% end %>
                 <div class="media-body ml-5 text-justify mb-3">
                 <h5 id="u-<%= recommend.id %>"><%= link_to recommend.name, user_path(recommend) %></h5>
@@ -128,16 +128,16 @@
                  </script>
                  <p> 学習言語:<%= recommend.language1&.lang1 %>&nbsp;&nbsp;母国語:<%= recommend.language&.lang2 %></p>
                  <p><%= recommend.profile %><%= recommend.id %></p>
-                 <div id="follow_form1-<%= recommend.id %>">
+                 <div  id="follow_form1-<%= recommend.id %>">
                   <%= render "relationships/follow_button", user: recommend %>
                  </div>
                  
                </div>
                
-            </li>
+            </div>
             <% end %>
             <% end %>
-         </ul>
+        
          </div>
        </div>
         

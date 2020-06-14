@@ -10,7 +10,7 @@
       <% if user.image_url %>
            <%= image_tag user.image_url(:thumb1), class:"rounded-circle " %>
       <% else %>
-            <img class="rounded img-fluid" src="<%= gravatar_url(user, { size: 80 }) %>" alt="">
+            <img class="rounded img-fluid" src="<%= gravatar_url(user, { size: 75 }) %>" alt="">
       <% end %>
      <div class="media-body ml-5 text-justify">
       <% if user.name %>
