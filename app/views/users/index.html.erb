@@ -113,7 +113,7 @@
           
             <% @recommends.each do |recommend| %>
             <% unless current_user.following?(recommend) %>
-            <div class="media mb-3 border-bottom col-12">
+            <div class="media mb-3 border-bottom col-11 offset-sm-1">
                 <% if recommend.image_url %>
                  <%= image_tag recommend.image_url(:thumb2), class:"rounded-circle" %>
                 <% else %>
