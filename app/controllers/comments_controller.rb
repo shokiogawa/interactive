@@ -2,26 +2,23 @@ class CommentsController < ApplicationController
   before_action :require_user_logged_in
 
   def create
+    #@post = Post.find(params[:post_id])
+    #@comment = @post.comments.build(comment_params)
+    #@comment.user_id = current_user.id
+    
+    @comment = current_user.comments.build(comment_params)
     @post = Post.find(params[:post_id])
-    @comment = @post.comments.build(comment_params)
-    @comment.user_id = current_user.id
+    @comment.post_id = @post.id
     
     
     @comments = @post.comments.order(created_at: :desc)
+  
     
     if @comment.save
-      flash[:success] = "コメントしました"
-      redirect_to post_path(@post)
+     render :create
     else
-      flash[:danger] = "コメントに失敗しました"
-      redirect_to post_path(@post)
+      render:error
     end
-    
-    #if @comment.save
-     #render :create
-    #else
-     # render:error
-    #end
   
   end
    
@@ -37,7 +34,7 @@ class CommentsController < ApplicationController
   private
   
   def comment_params
-    params.require(:comment).permit(:content, :post_id, :user_id)
+    params.require(:comment).permit(:content)
   end
   
 end
