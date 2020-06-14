@@ -10,10 +10,18 @@ class CommentsController < ApplicationController
     @comments = @post.comments.order(created_at: :desc)
     
     if @comment.save
-     render :create
+      flash[:success] = "コメントしました"
+      redirect_to post_path(@post)
     else
-      render:error
+      flash[:danger] = "コメントに失敗しました"
+      redirect_to post_path(@post)
     end
+    
+    #if @comment.save
+     #render :create
+    #else
+     # render:error
+    #end
   
   end
    
@@ -31,4 +39,5 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:content, :post_id, :user_id)
   end
+  
 end
